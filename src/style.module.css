@@ -1,0 +1,11 @@
+.SelectDifficultyWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 20px;
+}
+
+.Wrapper {
+  display: inline-flex;
+  width: 100%;
+}

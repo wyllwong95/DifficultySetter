@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import { DisplayDifficulty } from "./DisplayDifficulty/DisplayDifficulty"
+import { SelectDifficultyButton } from "./DisplayDifficulty/SelectDifficultyButton"
+import s from "./style.module.css";
+import "./global.css"
+import { DIFFICULTIES } from "./DisplayDifficulty/constant";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App() {
+
+     const [difficulty, setDifficulty] = useState("")
+
+     const onClickSelectDifficulty = (difficulty) => {
+          setDifficulty(difficulty)
+     };
+     const buttonList = []
+     DIFFICULTIES.map((tier) => {
+          return buttonList.push(<SelectDifficultyButton onItemClick={onClickSelectDifficulty} difficulty = {tier}></SelectDifficultyButton>)
+     })
+     
+     
+     return <>
+          <h1>React Difficulty Picker</h1>
+          <div className={s.Wrapper}>
+               <div className={s.SelectDifficultyWrapper}>
+                    <>{buttonList}</>
+               </div>
+               <DisplayDifficulty difficulty={difficulty}></DisplayDifficulty>
+          </div>
+     </>
 }
 
-export default App;
+
